@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 
-const Stock = ({ onPress, logo, name, ticker, selected }) => {
-    console.log("rendering stock", ticker);
+const Stock = ({ onPress, logo, name, ticker, selected }) => {    
     return (
         <TouchableOpacity
             style={{

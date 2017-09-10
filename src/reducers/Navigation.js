@@ -4,9 +4,34 @@ import { AppNavigator } from '../navigators/AppNavigator';
 const initialNavState = AppNavigator.router.getStateForAction('StockSelectorScreen');
 
 const nav = (state = initialNavState, action) => {
-    console.log("action", action);
-    const nextState = AppNavigator.router.getStateForAction(action, state);
-
+    let nextState;
+    switch (action.type) {
+        // case 'StockSelectorScreen':
+        // console.log("---->in nav to StockSelectorScreen");
+        //     nextState = AppNavigator.router.getStateForAction(
+        //         NavigationActions.back(),
+        //         state
+        //     );
+        //     break;
+        case 'WatchlistScreen':
+            console.log("---->in nav to watchlist");
+            nextState = AppNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'WatchlistScreen' }),
+                state
+            );
+            console.log("nextstate-->", nextState);
+            break;
+        case 'StockDetailsScreen':
+            console.log("---->in nav to stock details");
+            nextState = AppNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'StockDetailsScreen' }),
+                state
+            );
+            console.log("nextstate-->", nextState);
+            break;
+        default:
+            nextState = AppNavigator.router.getStateForAction(action, state);
+    }
     return nextState || state;
 };
 export default nav;

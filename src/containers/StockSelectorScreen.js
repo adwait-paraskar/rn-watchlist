@@ -10,7 +10,7 @@ const mapStateToProps = state => {
         stocks: allStocks,
         watchlist: state.watchlist,
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(toggleStock(id))
         }
     }
-}
+};
 
 const StockSelectorScreen = connect(
     mapStateToProps,
@@ -27,7 +27,7 @@ const StockSelectorScreen = connect(
 
 export default StockSelectorScreen;
 
-StockSelectorScreen.navigationOptions = props => {
+StockSelectorScreen.navigationOptions = ({ navigation }) => {    
     return ({
         headerTitle: 'Select Watchlist',
         headerTitleStyle: {color: 'white', textAlign: 'center'},
@@ -35,7 +35,7 @@ StockSelectorScreen.navigationOptions = props => {
             <Button
                 title={'Done'}
                 onPress={
-                    () => console.log("button pressed")
+                    () => navigation.dispatch({ type: 'WatchlistScreen' })
                 }
             />
         ),
