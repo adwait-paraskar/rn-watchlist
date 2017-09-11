@@ -9,8 +9,4 @@ const watchlist = (state = [], action) => {
             return state;
     }
 };
-//rename watchlist to items
-//add another property called selected - which will have id reference
-//stock details screen will look up this property and 
-//display the details
 export default watchlist;
