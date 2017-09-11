@@ -2,7 +2,6 @@ import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 
 const initialNavState = AppNavigator.router.getStateForAction('StockSelectorScreen');
-
 const nav = (state = initialNavState, action) => {
     let nextState;
     switch (action.type) {
@@ -18,20 +17,21 @@ const nav = (state = initialNavState, action) => {
             nextState = AppNavigator.router.getStateForAction(
                 NavigationActions.navigate({ routeName: 'WatchlistScreen' }),
                 state
-            );
-            console.log("nextstate-->", nextState);
+            );            
             break;
         case 'StockDetailsScreen':
-            console.log("---->in nav to stock details");
+            console.log("---->in nav to stock details", action);
+            console.log("---->in nav to stock details state", state);
             nextState = AppNavigator.router.getStateForAction(
                 NavigationActions.navigate({ routeName: 'StockDetailsScreen' }),
                 state
             );
-            console.log("nextstate-->", nextState);
             break;
         default:
             nextState = AppNavigator.router.getStateForAction(action, state);
     }
     return nextState || state;
 };
+
+
 export default nav;
