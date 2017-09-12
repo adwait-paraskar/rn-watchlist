@@ -1,20 +1,24 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import React, { PureComponent } from 'react';
+import { View, FlatList } from 'react-native';
+import Stock from './Stock';
 
-const Watchlist = ({ navigation, watchlist, onStockViewDetails }) => {
-    console.log("Watchlist props", navigation);
-    console.log("Watchlist watchlist", watchlist);
-    return (
-        <View>
-            <Text> Watchlist screen </Text>
-            <Button
-                onPress={
-                    () => onStockViewDetails(6)
-                }
-                title="Go to details"
+export default class Watchlist extends PureComponent {
+    render() {
+        return (
+            <FlatList
+                data={this.props.watchlist}                
+                renderItem={this._renderItem}   
+                keyExtractor={this._keyExtractor}
             />
-        </View>
+        );
+    };
+
+    _keyExtractor = (item, index) => item.id;
+    
+    _renderItem = ({ item }) => (
+        <Stock       
+            onPress={() => this.props.onStockViewDetails(item.ticker)}                 
+            {...item}
+        />
     );
 };
-export default Watchlist;

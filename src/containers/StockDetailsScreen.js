@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 
-const StockDetailsScreen = ({id}) => {
-    console.log("Stockdetailscreen props", id);    
+const StockDetailsScreen = ({ id }) => {
+    console.log("Stockdetailscreen props", id);
     return (
         <View>
             <Text> Stock details screen </Text>
@@ -12,12 +12,14 @@ const StockDetailsScreen = ({id}) => {
     );
 };
 
-const mapStateToProps = state => {
-    console.log("<<<<<<<--------Stockdetailscreen state ", state.nav);  
+const mapStateToProps = state => {    
     let selectedRoute = state.nav.routes[state.nav.index];
-    let selectedStockId = selectedRoute.params.id;
+    let props = (selectedRoute.params) ?
+        selectedRoute.params
+        : {};
+    //this will be empty during "back" navigation 
     return {
-        ...selectedRoute.params
+        ...props
     }
 };
 
