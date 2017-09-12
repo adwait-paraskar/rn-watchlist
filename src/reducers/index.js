@@ -22,21 +22,10 @@ import nav from './Navigation';
 import watchlist from './Watchlist';
 import stocks from './Stocks';
 
-const showDetailsOf = (state = null, action) => {
-    console.log("showDetails Of ACTION", action);
-    switch (action.type) {
-        case 'StockDetailsScreen':
-        return  {...state, id: action.params.id };
-        default:
-            return state;
-    }
-};
-
 const MyWatchlistApp = combineReducers({
     nav,
     stocks,
-    watchlist,    
-    showDetailsOf, 
+    watchlist,
 });
 
 export default MyWatchlistApp;

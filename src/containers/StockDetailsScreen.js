@@ -13,9 +13,11 @@ const StockDetailsScreen = ({id}) => {
 };
 
 const mapStateToProps = state => {
-    console.log("<<<<Stockdetailscreen state id", state.showDetailsOf);  
+    console.log("<<<<<<<--------Stockdetailscreen state ", state.nav);  
+    let selectedRoute = state.nav.routes[state.nav.index];
+    let selectedStockId = selectedRoute.params.id;
     return {
-        id: state.showDetailsOf.id,        
+        ...selectedRoute.params
     }
 };
 

@@ -23,7 +23,8 @@ const nav = (state = initialNavState, action) => {
             console.log("---->in nav to stock details", action);
             console.log("---->in nav to stock details state", state);
             nextState = AppNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'StockDetailsScreen' }),
+                NavigationActions.navigate({ routeName: 'StockDetailsScreen', 
+                params: action.params }),
                 state
             );
             break;

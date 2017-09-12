@@ -10,7 +10,7 @@ const Watchlist = ({ navigation, watchlist, onStockViewDetails }) => {
             <Text> Watchlist screen </Text>
             <Button
                 onPress={
-                    () => onStockViewDetails(5)
+                    () => onStockViewDetails(6)
                 }
                 title="Go to details"
             />
