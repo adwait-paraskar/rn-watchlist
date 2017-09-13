@@ -21,11 +21,13 @@ import { combineReducers } from 'redux';
 import nav from './Navigation';
 import watchlist from './Watchlist';
 import stocks from './Stocks';
+import stockPriceData from './StockPriceData';
 
 const MyWatchlistApp = combineReducers({
     nav,
     stocks,
     watchlist,
+    stockPriceData,
 });
 
 export default MyWatchlistApp;

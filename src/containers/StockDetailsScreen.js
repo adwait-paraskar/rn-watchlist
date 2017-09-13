@@ -3,7 +3,6 @@ import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 const StockDetailsScreen = ({ id }) => {
-    console.log("Stockdetailscreen props", id);
     return (
         <View>
             <Text> Stock details screen </Text>

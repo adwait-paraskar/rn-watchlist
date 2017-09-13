@@ -12,29 +12,39 @@ export const viewStockDetails = id => {
     }
 };
 
-/*
-export const requestStockPriceData = id => {
+export const requestPriceData = id => {
     return {
         type: 'REQUEST_STOCK_PRICE_DATA',
         id
     }
 };
 
-export const receiveStockPriceData = (id, json) => {
-    return{
+export const receivePriceData = (id, json) => {
+    return {
         type: 'RECEIVE_STOCK_PRICE_DATA',
-        id, 
-        //needs modification
-        priceData: json.data.children.map(child => child.data), 
-    }    
+        id,        
+        priceData: json, 
+    }
 }
 
-fechStockPriceData = (stockId) => {
-    return (dispatch, getState) => {    
-    //dispatch requestPriceData
-    //get ticker from ID
-    //call API to get series data 
-    //dispatch recievePriceData with id and json        
+const REQUEST_URL =
+    'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=60min&apikey=STUC6J6GO0NRGUH2&symbol=';
+
+export function fechStockData(stockId, ticker) {
+    return (dispatch, getState) => {
+        dispatch(requestPriceData(stockId));
+        console.log("fetch state", getState());
+        let apiUrl = REQUEST_URL + ticker;
+        console.log("in fetchstockdata", stockId);
+        return fetch(apiUrl)
+            .then(
+            (response) => response.json(),
+            error => console.log('An error occured.', error)
+            )
+            .then((responseJson) => {
+                //dispatch recievePriceData with id and json        
+                console.log("responseJson", responseJson);
+                dispatch(receivePriceData(stockId,responseJson));
+            })
     }
 };
-*/

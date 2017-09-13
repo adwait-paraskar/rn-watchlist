@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import Watchlist from '../components/Watchlist';
 
 const mapStateToProps = state => {
+    console.log("watchlistcontainer state",state);
     return {
+        //move this to reducer
         watchlist: state.stocks.filter(
             (stock) => state.watchlist.includes(stock.id)
-        )
+        ),
+        stockPriceData:state.stockPriceData,
     };
 };
 
