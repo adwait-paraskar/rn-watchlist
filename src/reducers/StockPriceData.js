@@ -11,10 +11,7 @@ const stockPriceData = (state = {}, action) => {
 };
 
 function stocks(
-    state = {
-        isFetching: false,
-        series: []
-    },
+    state = { isFetching: false, series: [] },
     action
 ) {
     switch (action.type) {

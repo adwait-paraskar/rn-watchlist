@@ -35,7 +35,7 @@ export function fechStockData(stockId, ticker) {
         dispatch(requestPriceData(stockId));
         console.log("fetch state", getState());
         let apiUrl = REQUEST_URL + ticker;
-        console.log("in fetchstockdata", stockId);
+        console.log("in fetchstockdata apiUrl", apiUrl);
         return fetch(apiUrl)
             .then(
             (response) => response.json(),

@@ -2,43 +2,38 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 
 class StockPriceSummary extends Component {
-    shouldComponentUpdate(nextProps, nextState){
-        console.log("PREV", this.props.isFetching);
-        console.log("NEXT", nextProps.isFetching);
-        console.log("###will return", this.props.isFetching !== nextProps.isFetching);
+    shouldComponentUpdate(nextProps, nextState) {
         return (this.props.isFetching !== nextProps.isFetching);
     }
 
+    //TODO: seperate functions or components 
+    // for - fetching view , price data 
+    // error handling 
+    // pull to refresh in watchlist
     render() {
-        let { onPress, logo, name, ticker, isFetching, series = {} } = this.props;
-        let fetchingText = isFetching ? "Fetching..." : "Fetching DONE";         
-        let lastUpdated = series['Meta Data'] 
-            ? series['Meta Data']['3. Last Refreshed']
-            : "-";
+        let { onPress, logo, name, ticker, isFetching, currentPrice, series } = this.props;
+        let fetchingText = isFetching ? "Fetching..." : "Fetching DONE";
+        let cellStyle = [styles.basicsContainer];
+        if (currentPrice.changeValue > 0)
+            cellStyle.push(styles.advance);
+        if (currentPrice.changeValue < 0)
+            cellStyle.push(styles.decline);
         return (
             <TouchableOpacity
-                style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    padding: 10,                    
-                }}
+                style={styles.stockContainer}
                 onPress={onPress}
             >
-                <View>
-                    <Image
-                        style={styles.logo}
-                        source={{ uri: logo }}
-                    />
-                </View>
-
                 <View style={styles.basicsContainer}>
                     <Text style={styles.h1}>{name}</Text>
                     <Text style={styles.h3}>
                         {`Ticker: ${ticker}`}
                     </Text>
+                </View>
+                <View style={cellStyle}>
                     <Text> {fetchingText} </Text>
-                    <Text> {lastUpdated} </Text>
-
+                    <Text> {currentPrice.lastUpdated} </Text>
+                    <Text> {currentPrice.price} </Text>
+                    <Text> {currentPrice.changeValue} </Text>
                 </View>
 
             </TouchableOpacity>
@@ -48,26 +43,28 @@ class StockPriceSummary extends Component {
 export default StockPriceSummary;
 
 const styles = StyleSheet.create({
-    StockContainer: {
-        flex: 1,        
-        padding: 5,
+    stockContainer: {
+        flex: 1,
+        padding: 10,        
+        justifyContent: 'space-around',
+        flexDirection: 'row',
     },
     basicsContainer: {
-        flex: 1,
-        justifyContent: 'space-between',
-        paddingLeft: 10,
-    },
-    logo: {
-        width: 40,
-        height: 40
+        backgroundColor: 'gray',
     },
     h1: {
-        fontSize: 20,
+        fontSize: 16,
     },
     h3: {
         fontSize: 12,
     },
-    selected: {
-        backgroundColor: 'lightgreen',
+    advance: {
+        backgroundColor: 'green'
+    },
+    decline: {
+        backgroundColor: 'red'
+    },
+    error: {
+        backgroundColor: 'orange'
     }
 });
