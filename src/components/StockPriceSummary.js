@@ -11,13 +11,17 @@ class StockPriceSummary extends Component {
     // error handling 
     // pull to refresh in watchlist
     render() {
-        let { onPress, logo, name, ticker, isFetching, currentPrice, series } = this.props;
+        //TODO: put the details in an object rather than flattening
+        let { onPress, logo, name, ticker, isFetching, currentPrice } = this.props;
+        if(!currentPrice){
+            return (<View/>);
+        }
         let fetchingText = isFetching ? "Fetching..." : "Fetching DONE";
-        let cellStyle = [styles.basicsContainer];
+        let cellStyles = [];
         if (currentPrice.changeValue > 0)
-            cellStyle.push(styles.advance);
+            cellStyles.push(styles.advance);
         if (currentPrice.changeValue < 0)
-            cellStyle.push(styles.decline);
+            cellStyles.push(styles.decline);
         return (
             <TouchableOpacity
                 style={styles.stockContainer}
@@ -28,12 +32,13 @@ class StockPriceSummary extends Component {
                     <Text style={styles.h3}>
                         {`Ticker: ${ticker}`}
                     </Text>
+                    <Text style={styles.h3} > {currentPrice.lastUpdated} </Text>
                 </View>
-                <View style={cellStyle}>
-                    <Text> {fetchingText} </Text>
-                    <Text> {currentPrice.lastUpdated} </Text>
-                    <Text> {currentPrice.price} </Text>
-                    <Text> {currentPrice.changeValue} </Text>
+                <View style={styles.basicsContainer}>
+                    <Text> {fetchingText} </Text>                    
+                    <Text style={[...cellStyles, styles.h1]}> {currentPrice.price} </Text>
+                    <Text style={[...cellStyles, styles.h1]}> {currentPrice.changeValue} </Text>                                        
+                    <Text style={[...cellStyles, styles.h1]}> {currentPrice.changePcnt} </Text>                    
                 </View>
 
             </TouchableOpacity>
@@ -46,11 +51,12 @@ const styles = StyleSheet.create({
     stockContainer: {
         flex: 1,
         padding: 10,        
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
+        alignContent: 'center',
         flexDirection: 'row',
     },
     basicsContainer: {
-        backgroundColor: 'gray',
+        flex: 1,
     },
     h1: {
         fontSize: 16,
@@ -59,12 +65,12 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     advance: {
-        backgroundColor: 'green'
+        color: 'green'
     },
     decline: {
-        backgroundColor: 'red'
+        color: 'red'
     },
     error: {
-        backgroundColor: 'orange'
+        color: 'orange'
     }
 });

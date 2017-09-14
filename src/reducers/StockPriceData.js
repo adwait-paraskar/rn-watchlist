@@ -11,20 +11,28 @@ const stockPriceData = (state = {}, action) => {
 };
 
 function stocks(
-    state = { isFetching: false, series: [] },
+    state = { 
+        isFetching: false, 
+        currentPrice: [], 
+        chartData: {series: [], labels: []} 
+    },
     action
 ) {
     switch (action.type) {
         case 'REQUEST_STOCK_PRICE_DATA':
             return Object.assign({}, state, {
                 isFetching: true,
-                series: [], //temporary fix
+                // currentPrice: [], //temporary fix
+                // chartData: [],
             })
         case 'RECEIVE_STOCK_PRICE_DATA': 
-        console.log("RECEIVE_STOCK_PRICE_DATA",action);
+        console.log("RECEIVE_STOCK_PRICE_DATA",action.currentPrice);
+        console.log(action.chartData.series);
+        console.log(action.chartData.labels);
         return Object.assign({}, state, {
             isFetching: false,
-            series: action.priceData,
+            currentPrice: action.currentPrice,
+            chartData: action.chartData,
         })
         default: 
             return state;

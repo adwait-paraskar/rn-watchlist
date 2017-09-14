@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Watchlist from '../components/Watchlist';
 
-const mapStateToProps = state => {
-    console.log("watchlistcontainer state",state);
+const mapStateToProps = state => {    
     return {
         //move this to reducer
         watchlist: state.stocks.filter(
@@ -15,8 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStockViewDetails: (_id) => {
-            dispatch({ type: 'StockDetailsScreen', params: { id: _id } })
+        onStockViewDetails: (item, currentPrice, series) => {
+            dispatch({ type: 'StockDetailsScreen', params: { item, currentPrice, series } })
         }
     }
 };

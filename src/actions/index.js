@@ -1,3 +1,5 @@
+import { getCurrentPrice, getChartData } from './PriceDataHelper';
+
 export const toggleStock = id => {
     return {
         type: 'TOGGLE_STOCK_SELECTION',
@@ -19,30 +21,30 @@ export const requestPriceData = id => {
     }
 };
 
-export const receivePriceData = (id, json) => {
+//TODO:handle error here as separate dispatch action?
+export const receivePriceData = (id, json) => {    
     return {
         type: 'RECEIVE_STOCK_PRICE_DATA',
         id,        
-        priceData: json, 
+        currentPrice: getCurrentPrice(json), 
+        chartData: getChartData(json),
     }
 }
 
 const REQUEST_URL =
-    'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=60min&apikey=STUC6J6GO0NRGUH2&symbol=';
+    'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=STUC6J6GO0NRGUH2&symbol=';
 
 export function fechStockData(stockId, ticker) {
     return (dispatch, getState) => {
         dispatch(requestPriceData(stockId));
-        console.log("fetch state", getState());
+        
         let apiUrl = REQUEST_URL + ticker;
-        console.log("in fetchstockdata apiUrl", apiUrl);
         return fetch(apiUrl)
             .then(
             (response) => response.json(),
             error => console.log('An error occured.', error)
             )
-            .then((responseJson) => {
-                //dispatch recievePriceData with id and json        
+            .then((responseJson) => {     
                 console.log("responseJson", responseJson);
                 dispatch(receivePriceData(stockId,responseJson));
             })
