@@ -7,7 +7,7 @@ const mapStateToProps = state => {
     let selectedRoute = state.nav.routes[state.nav.index];
     let props = (selectedRoute.params) ?
         selectedRoute.params
-        : {item:{}, currentPrice:{},series:{}};
+        : {item:{}, currentPrice:{}, series:{}};
     //this will be empty during "back" navigation 
     //TODO: can it be moved to reducer?
     console.log("props in SDS", props);

@@ -15,6 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onStockViewDetails: (item, currentPrice, series) => {
+            console.log("sending props to details", series);
             dispatch({ type: 'StockDetailsScreen', params: { item, currentPrice, series } })
         }
     }

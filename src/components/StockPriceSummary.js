@@ -9,9 +9,9 @@ class StockPriceSummary extends Component {
     //TODO: seperate functions or components 
     // for - fetching view , price data 
     // error handling 
-    // pull to refresh in watchlist
     render() {
         //TODO: put the details in an object rather than flattening
+        //TODO: put up separate methods for rendering fetching view and with data view
         let { onPress, logo, name, ticker, isFetching, currentPrice } = this.props;
         if(!currentPrice){
             return (<View/>);

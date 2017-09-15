@@ -17,10 +17,10 @@ export function getChartData(json) {
     let dailySeries = json["Time Series (Daily)"];
     let x = 0;
     Object.keys(dailySeries)
-        .slice(0, 9).
+        .slice(0, 19).
         map((key) => {            
             let y = dailySeries[key]["4. close"];
-            chartData.series.push({ 'x': x++, 'y': parseFloat(y).toFixed(2) });
+            chartData.series.push({ 'x': x++, 'y': parseFloat(y) });
             chartData.labels.push(key);
         });
     return chartData;
