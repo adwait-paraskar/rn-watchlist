@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Watchlist from '../components/Watchlist';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const mapStateToProps = state => {    
     return {
@@ -28,8 +29,18 @@ const WatchlistScreen = connect(
 
 export default WatchlistScreen;
 
-WatchlistScreen.navigationOptions = () => {
+WatchlistScreen.navigationOptions = ({navigation}) => {
     return ({
         title: 'Watchlist',
+        headerLeft: (
+            <Icon.Button
+                name={'arrow-back'}
+                size={25}
+                backgroundColor={'cornflowerblue'}
+                onPress={
+                    () => navigation.goBack()
+                }
+            />
+        ),
     });
 };

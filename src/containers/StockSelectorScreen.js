@@ -29,9 +29,8 @@ const StockSelectorScreen = connect(
 export default StockSelectorScreen;
 
 StockSelectorScreen.navigationOptions = ({ navigation }) => {    
-    console.log("nav options nav", navigation);
     return ({
-        headerTitle: 'Watchlist',        
+        headerTitle: 'Add to Watchlist',        
         headerTitleStyle: {color: 'white', textAlign: 'center'},        
         headerLeft: null,
         headerRight: (

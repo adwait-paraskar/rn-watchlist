@@ -13,7 +13,6 @@ export default class Watchlist extends PureComponent {
     };
 
     render() {
-        console.log("Watchlist props", this.props);
         return (
             <FlatList
                 data={this.props.watchlist}
@@ -37,7 +36,6 @@ export default class Watchlist extends PureComponent {
         let currentPrice = priceData.currentPrice;
         let chartData = priceData.chartData || [];
         
-        console.log("###Rendering item", item.chartData);
         return (
             <StockPriceSummary
                 onPress={() => this.props.onStockViewDetails(item, currentPrice, chartData)}

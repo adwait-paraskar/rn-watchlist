@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import SeriesChart from './SeriesChart';
+import NameValueText from './NameValueText';
 
 class StockDetails extends Component {
     render() {
@@ -8,21 +9,16 @@ class StockDetails extends Component {
         let { price, change, updated, changePcnt, high, low, volume } = this.props.currentPrice;
         return (
             <View style={styles.container}>
-                <View>
-                    <Text style={styles.h1}>
-                        {`${name} (${ticker})`}
-                    </Text>
-                </View>
                 <View style={styles.basicsContainer}>
                     <View>
-                        <Text> {`Last Traded: ${price}`} </Text>
-                        <Text> {`Change: ${change} (${changePcnt}%)`} </Text>
-                        <Text> {`Updated: ${updated}`} </Text>
+                        <NameValueText name={'Last Traded'} value={price} />                      
+                        <NameValueText name={'Change'} value={`${change} (${changePcnt}%)`} />
+                        <NameValueText name={'Updated'} value={updated} />
                     </View>
                     <View>
-                        <Text> {`High: ${high}`} </Text>
-                        <Text> {`Low: ${low}`} </Text>
-                        <Text> {`Volume: ${volume}`} </Text>
+                        <NameValueText name={'High'} value={high} />      
+                        <NameValueText name={'Low'} value={low} />
+                        <NameValueText name={'Volume'} value={volume} />                
                     </View>
                 </View>
                 <View style={{ height: 2, backgroundColor: "#CED0CE", }} />
@@ -35,7 +31,6 @@ class StockDetails extends Component {
 
     _renderChart() {
         if (this.props.series) {
-            console.log("rendering chart");
             return (
                 <SeriesChart
                     item={this.props.item}
@@ -54,19 +49,17 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f7f7f7',
         justifyContent: 'flex-start',
-
     },
     basicsContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
         padding: 10,
     },
     chartContainer: {
         flex: 1,
-
         padding: 1,
-
+        alignSelf: 'stretch',
     },
     h1: {
         fontSize: 18,

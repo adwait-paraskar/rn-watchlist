@@ -5,15 +5,8 @@ const initialNavState = AppNavigator.router.getStateForAction('StockSelectorScre
 const nav = (state = initialNavState, action) => {
     let nextState;
     switch (action.type) {
-        // case 'StockSelectorScreen':
-        // console.log("---->in nav to StockSelectorScreen");
-        //     nextState = AppNavigator.router.getStateForAction(
-        //         NavigationActions.back(),
-        //         state
-        //     );
-        //     break;
         case 'WatchlistScreen':
-            console.log("---->in nav to watchlist");
+            console.log("---->in nav to watchlist", state);
             nextState = AppNavigator.router.getStateForAction(
                 NavigationActions.navigate({ routeName: 'WatchlistScreen' }),
                 state
@@ -33,6 +26,5 @@ const nav = (state = initialNavState, action) => {
     }
     return nextState || state;
 };
-
 
 export default nav;
