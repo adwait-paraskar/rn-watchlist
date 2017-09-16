@@ -36,7 +36,7 @@ StockSelectorScreen.navigationOptions = ({ navigation }) => {
         headerRight: (
             <Icon.Button
                 name={'check'}
-                size={30}
+                size={25}
                 backgroundColor={'cornflowerblue'}
                 onPress={
                     () => navigation.dispatch({ type: 'WatchlistScreen' })

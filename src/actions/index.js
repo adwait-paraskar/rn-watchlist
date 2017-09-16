@@ -16,7 +16,7 @@ export const viewStockDetails = id => {
 
 export const requestPriceData = id => {
     return {
-        type: 'REQUEST_STOCK_PRICE_DATA',
+        type: 'REQUEST_STOCK_PRICE_DATA',        
         id
     }
 };
