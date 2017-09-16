@@ -28,7 +28,7 @@ export default class Watchlist extends PureComponent {
 
     _renderSeparator = () => {
         return (
-            <View style={{ height: 1, }} />
+            <View style={{ height: 1, backgroundColor: "#CED0CE", }} />
         );
     };
 
@@ -41,7 +41,7 @@ export default class Watchlist extends PureComponent {
         return (
             <StockPriceSummary
                 onPress={() => this.props.onStockViewDetails(item, currentPrice, chartData)}
-                {...item}
+                item={item}
                 dispatch={this.props.navigation.dispatch}
                 isFetching={priceData.isFetching}
                 currentPrice={currentPrice}                

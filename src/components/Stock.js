@@ -1,15 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Stock = ({ onPress, logo, name, ticker, selected }) => {    
+const Stock = ({ onPress, logo, name, ticker, selected }) => {
     return (
         <TouchableOpacity
-            style={{
-                flex: 1,
-                flexDirection: 'row',
-                padding: 10,
-                backgroundColor: selected ? 'green' : 'white',
-            }}
+            style={styles.stockContainer}
             onPress={onPress}
         >
             <View>
@@ -26,6 +22,14 @@ const Stock = ({ onPress, logo, name, ticker, selected }) => {
                 </Text>
             </View>
 
+            <View style={styles.iconContainer}>
+                {selected ?
+                    <Icon name="check-circle" size={25} color="green" />
+                    :
+                    <Icon name="add-circle-outline" size={25} color="gray" />
+                }
+            </View>
+
         </TouchableOpacity>
     );
 };
@@ -33,22 +37,27 @@ const Stock = ({ onPress, logo, name, ticker, selected }) => {
 export default Stock;
 
 const styles = StyleSheet.create({
-    StockContainer: {
+    stockContainer: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'row',        
+        justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 5,
     },
-    basicsContainer: {
+    basicsContainer: {                
+        flex: 5,
+        padding: 10,
+    },
+    iconContainer: {                
         flex: 1,
-        justifyContent: 'space-between',
-        paddingLeft: 10,
+        alignItems: 'center',
     },
     logo: {
         width: 40,
         height: 40
     },
     h1: {
-        fontSize: 22,
+        fontSize: 22,        
     },
     h3: {
         fontSize: 12,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class StockPriceSummary extends Component {
     shouldComponentUpdate(nextProps, nextState) {
@@ -10,18 +11,15 @@ class StockPriceSummary extends Component {
     // for - fetching view , price data 
     // error handling 
     render() {
-        //TODO: put the details in an object rather than flattening
         //TODO: put up separate methods for rendering fetching view and with data view
-        let { onPress, logo, name, ticker, isFetching, currentPrice } = this.props;
-        if(!currentPrice){
-            return (<View/>);
+        let { logo, name, ticker } = this.props.item;
+        let { onPress, currentPrice } = this.props;
+        if (!currentPrice) {
+            return (<View />);
         }
-        let fetchingText = isFetching ? "Fetching..." : "Fetching DONE";
-        let cellStyles = [];
-        if (currentPrice.changeValue > 0)
-            cellStyles.push(styles.advance);
-        if (currentPrice.changeValue < 0)
-            cellStyles.push(styles.decline);
+        console.log("current Price", currentPrice);
+
+        let updated = currentPrice.updated || '-';
         return (
             <TouchableOpacity
                 style={styles.stockContainer}
@@ -30,39 +28,69 @@ class StockPriceSummary extends Component {
                 <View style={styles.basicsContainer}>
                     <Text style={styles.h1}>{name}</Text>
                     <Text style={styles.h3}>
-                        {`Ticker: ${ticker}`}
+                        {`${ticker} | ${updated}`}
                     </Text>
-                    <Text style={styles.h3} > {currentPrice.lastUpdated} </Text>
-                </View>
-                <View style={styles.basicsContainer}>
-                    <Text> {fetchingText} </Text>                    
-                    <Text style={[...cellStyles, styles.h1]}> {currentPrice.price} </Text>
-                    <Text style={[...cellStyles, styles.h1]}> {currentPrice.changeValue} </Text>                                        
-                    <Text style={[...cellStyles, styles.h1]}> {currentPrice.changePcnt} </Text>                    
                 </View>
 
+                <View style={styles.priceContainer}>
+                    {this._renderPrice()}
+                </View>
+                <View style={styles.iconContainer}>
+                    <Icon name="navigate-next" size={30} color="gray" />
+                </View>
             </TouchableOpacity>
         );
     };
-}
+
+    _renderPrice() {
+        let { currentPrice, isFetching, } = this.props;
+        if (isFetching)
+            return (<ActivityIndicator />);
+
+        let cellStyles = [styles.h3, styles.price];
+        if (currentPrice.change > 0)
+            cellStyles.push(styles.advance);
+        if (currentPrice.change < 0)
+            cellStyles.push(styles.decline);
+        return (
+            <View>
+                <Text style={[styles.h1, styles.price]}>{currentPrice.price}</Text>
+                <Text style={[...cellStyles]}>
+                    {`${currentPrice.change} (${currentPrice.changePcnt})`}
+                </Text>
+            </View>
+        )
+    }
+};
+
 export default StockPriceSummary;
 
 const styles = StyleSheet.create({
     stockContainer: {
-        flex: 1,
-        padding: 10,        
-        justifyContent: 'space-between',
-        alignContent: 'center',
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
     },
     basicsContainer: {
+        flex: 8,
+    },
+    priceContainer: {
+        flex: 4,
+    },
+    iconContainer:{
         flex: 1,
     },
     h1: {
-        fontSize: 16,
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     h3: {
-        fontSize: 12,
+        fontSize: 14,
+    },
+    price: {
+        textAlign: 'right',
+        fontWeight: 'bold',
     },
     advance: {
         color: 'green'

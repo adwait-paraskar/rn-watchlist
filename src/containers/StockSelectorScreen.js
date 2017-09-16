@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleStock } from '../actions';
 import { View, Button } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import StockSelector from '../components/StockSelector'
 
@@ -28,12 +29,16 @@ const StockSelectorScreen = connect(
 export default StockSelectorScreen;
 
 StockSelectorScreen.navigationOptions = ({ navigation }) => {    
+    console.log("nav options nav", navigation);
     return ({
-        headerTitle: 'Select Watchlist',
-        headerTitleStyle: {color: 'white', textAlign: 'center'},
+        headerTitle: 'Watchlist',        
+        headerTitleStyle: {color: 'white', textAlign: 'center'},        
+        headerLeft: null,
         headerRight: (
-            <Button
-                title={'Done'}
+            <Icon.Button
+                name={'check'}
+                size={30}
+                backgroundColor={'cornflowerblue'}
                 onPress={
                     () => navigation.dispatch({ type: 'WatchlistScreen' })
                 }

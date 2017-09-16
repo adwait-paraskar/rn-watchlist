@@ -6,22 +6,29 @@ export function getCurrentPrice(json) {
 
     let price = lastTradedPrice["4. close"];
     let openPrice = lastTradedPrice['1. open'];
+    let low= lastTradedPrice['3. low'];
+    let high= lastTradedPrice['2. high'];
+    let volume= lastTradedPrice['5. volume'];
     let change = (price - openPrice).toFixed(2);
     let changePcnt = (change * 100 / openPrice).toFixed(2);
 
-    return { price, openPrice, change, changePcnt, updated };
+    return { price, openPrice, change, changePcnt, updated, high, low, volume };
 };
 
+const NO_OF_PAST_DAYS_FOR_CHART = 10;
 export function getChartData(json) {
     let chartData = { series: [], labels: [] };
     let dailySeries = json["Time Series (Daily)"];
-    let x = 0;
+    let x = NO_OF_PAST_DAYS_FOR_CHART-1;
+    let series, labels = [];
     Object.keys(dailySeries)
-        .slice(0, 19).
+        .slice(0, x).
         map((key) => {            
             let y = dailySeries[key]["4. close"];
-            chartData.series.push({ 'x': x++, 'y': parseFloat(y) });
-            chartData.labels.push(key);
+            chartData.series.push({ 'x': x--, 'y': parseFloat(y) });
+            chartData.labels.push(key.substr(-2,2));
         });
+    //required to make chart render day wise in ascending order. Same reason for x-- above
+    chartData.labels.reverse(); 
     return chartData;
 }

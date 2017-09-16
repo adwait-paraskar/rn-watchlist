@@ -6,20 +6,19 @@ class SeriesChart extends Component {
     _showHeader() {
         return (
             <Text style={styles.header}>
-                Hourly Chart
+                Daily Series
             </Text>
         );
     };
 
     _renderChart() {
-        let data = this.props.series;
-        console.log("chart data", data);
+        let data = this.props.series;        
         //TODO:domain should come from config or user selection
         return (
             <View style={styles.chartContainer}>
                 <VictoryChart
-                    domain={{ x: [0, 19], }}
-                    domainPadding={20}
+                    domain={{ x: [0, 9], }}
+                    domainPadding={{y:20}}
                 >
                     <VictoryGroup
                         height={300}
@@ -34,6 +33,7 @@ class SeriesChart extends Component {
                                 labels: { fontSize: 12 }
                             }}
                             animate={{ duration: 1500 }}
+                            categories={{x:this.props.labels}}  
                         />
                     </VictoryGroup>
                 </VictoryChart>
@@ -57,19 +57,17 @@ export default SeriesChart;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f7f7f7',
-        alignSelf: 'stretch',
-        justifyContent: 'flex-start',
+        backgroundColor: '#f7f7f7',        
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 1,
-        alignSelf: 'stretch',
+        flex: 1,        
         padding: 1,
     },
     header: {
-        fontSize: 20,
-        padding: 10,
+        fontSize: 18,
+        paddingTop: 20,
         textAlign: 'center',
     },
     error: {
