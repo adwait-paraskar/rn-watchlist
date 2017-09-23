@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
 class NameValueText extends Component {
-    render() {
-        console.log("props", this.props)
+    render() {        
         let { name, value } = this.props;
         return (
-            <View style={{ flexDirection: 'row' }}>
-                <Text style={{ fontSize: 14 }}>
-                    {`${name}: `}
+            <View style={styles.container}>
+                <Text style={{ fontSize: 14, textAlign: 'left' }}>
+                    {`${name}:`}
                 </Text>
                 <Text style={{ fontSize: 14, fontWeight: 'bold' }}>
                     {value}
@@ -18,3 +17,11 @@ class NameValueText extends Component {
     }
 }
 export default NameValueText;
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',    
+        padding: 2,
+    },
+});
