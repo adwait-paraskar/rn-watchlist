@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { VictoryChart, VictoryGroup, VictoryLine } from 'victory-native';
 
 class SeriesChart extends Component {
@@ -12,32 +12,34 @@ class SeriesChart extends Component {
     };
 
     _renderChart() {
-        let data = this.props.series;        
+        let data = this.props.series;
         //TODO:domain should come from config or user selection
         return (
-            <View style={styles.chartContainer}>
-                <VictoryChart
-                    domain={{ x: [0, 9], }}
-                    domainPadding={{y:20}}
-                >
-                    <VictoryGroup
-                        height={300}
-                        data={data} >
-                        <VictoryLine
-                            interpolation="cardinal"
-                            style={{
-                                data: {
-                                    stroke: "cornflowerblue",
-                                    strokeWidth: 3
-                                },
-                                labels: { fontSize: 12 }
-                            }}
-                            animate={{ duration: 1500 }}
-                            categories={{x:this.props.labels}}  
-                        />
-                    </VictoryGroup>
-                </VictoryChart>
-            </View>
+            <ScrollView>
+                <View style={styles.chartContainer}>
+                    <VictoryChart
+                        domain={{ x: [0, 9], }}
+                        domainPadding={{ y: 10 }}
+                    >
+                        <VictoryGroup
+                            height={300}
+                            data={data} >
+                            <VictoryLine
+                                interpolation="cardinal"
+                                style={{
+                                    data: {
+                                        stroke: "cornflowerblue",
+                                        strokeWidth: 3
+                                    },
+                                    labels: { fontSize: 12 }
+                                }}
+                                animate={{ duration: 1500 }}
+                                categories={{ x: this.props.labels }}
+                            />
+                        </VictoryGroup>
+                    </VictoryChart>
+                </View>
+            </ScrollView>
         );
     };
 
@@ -57,12 +59,12 @@ export default SeriesChart;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f7f7f7',        
+        backgroundColor: '#f7f7f7',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 1,        
+        flex: 1,
         padding: 1,
     },
     header: {
