@@ -1,10 +1,7 @@
 import React, { PureComponent } from 'react';
 import {
-    StyleSheet,
     View,
     FlatList,
-    TextInput,
-    Image
 } from 'react-native';
 
 import Stock from './Stock';

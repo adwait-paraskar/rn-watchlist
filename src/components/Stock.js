@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
+import { 
+    StyleSheet, 
+    View, 
+    TouchableOpacity, 
+    Text, 
+    Image 
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Stock = ({ onPress, logo, name, ticker, selected }) => {
@@ -62,7 +68,4 @@ const styles = StyleSheet.create({
     h3: {
         fontSize: 12,
     },
-    selected: {
-        backgroundColor: 'lightgreen',
-    }
 });

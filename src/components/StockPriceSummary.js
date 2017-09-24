@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import { 
+    StyleSheet, 
+    View, 
+    TouchableOpacity, 
+    Text, 
+    ActivityIndicator 
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class StockPriceSummary extends Component {

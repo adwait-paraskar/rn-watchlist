@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
-import { VictoryChart, VictoryGroup, VictoryLine } from 'victory-native';
+import { 
+    Text, 
+    View, 
+    StyleSheet, 
+    ScrollView 
+} from 'react-native';
+import { 
+    VictoryChart, 
+    VictoryGroup, 
+    VictoryLine 
+} from 'victory-native';
 
 class SeriesChart extends Component {
     _showHeader() {
