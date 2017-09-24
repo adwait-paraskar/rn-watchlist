@@ -1,16 +1,29 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity, Text, Image } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    FlatList,
+    TextInput,
+    Image
+} from 'react-native';
 
 import Stock from './Stock';
+import SearchBar from './SearchBar';
 
 export default class StockSelector extends PureComponent {
+    constructor(props) {
+        super(props);
+        this._setInitialState();
+    }
+
     render() {
         return (
             <FlatList
-                data={this.props.stocks}
+                data={this.state.stockList}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._renderItem}
                 ItemSeparatorComponent={this._renderSeparator}
+                ListHeaderComponent={this._renderHeader}
                 /*to force FlatList to render, when watchlist changes*/
                 extraData={this.props.watchlist}
             />
@@ -21,9 +34,29 @@ export default class StockSelector extends PureComponent {
 
     _renderSeparator = () => {
         return (
-            <View style={{ height: 1, backgroundColor: "#CED0CE", }} />
+            <View style={{ height: 1, backgroundColor: '#CED0CE', }} />
         );
     };
+
+    _renderHeader = () => {
+        return (
+            <SearchBar onChangeText={this._filterData} />
+        )
+    };
+
+    _filterData = ( text ) => {        
+        if (text === '')
+            this._setInitialState();
+
+        let filteredStocklist = this.props.stocks.filter(
+            (item) => {
+                return item.ticker.includes(text.toUpperCase()) ||
+                    item.name.toLowerCase().includes(text.toLowerCase());
+            });
+        this.setState({
+            stockList: filteredStocklist,
+        })
+    }
 
     _renderItem = ({ item }) => (
         <Stock
@@ -37,4 +70,10 @@ export default class StockSelector extends PureComponent {
         console.log("pressed", item);
         this.props.onStockClick(item.id);
     }
-};
+
+    _setInitialState() {
+        this.state = {
+            stockList: this.props.stocks,
+        };
+    }
+};  
