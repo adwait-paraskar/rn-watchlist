@@ -1,6 +1,4 @@
 const stockPriceData = (state = { isRefreshing: false }, action) => {
-    //TODO: add isRefreshing here
-    console.log("stockPriceData reducer");
     switch (action.type) {
         case 'REQUEST_STOCK_PRICE_DATA':
             let isRefreshing = true;

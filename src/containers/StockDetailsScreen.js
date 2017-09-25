@@ -25,8 +25,7 @@ StockDetailsScreen = connect(
 
 export default StockDetailsScreen;
 
-StockDetailsScreen.navigationOptions = ({ navigation }) => {
-    console.log("%%%%%%%%%navigation",navigation);
+StockDetailsScreen.navigationOptions = ({ navigation }) => {    
     let stockName= navigation.state.params.item.name || 'Stock Details';
     return ({
         title: stockName,
