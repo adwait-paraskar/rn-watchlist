@@ -1,8 +1,13 @@
-const stockPriceData = (state = {}, action) => {
+const stockPriceData = (state = { isRefreshing: false }, action) => {
+    //TODO: add isRefreshing here
+    console.log("stockPriceData reducer");
     switch (action.type) {
         case 'REQUEST_STOCK_PRICE_DATA':
-        case 'RECEIVE_STOCK_PRICE_DATA': 
+            let isRefreshing = true;
+        case 'RECEIVE_STOCK_PRICE_DATA':
+            isRefreshing = false;
             return Object.assign({}, state, {
+                isRefreshing,
                 [action.id]: stocks(state[action.id], action)
             })
         default:
@@ -11,10 +16,10 @@ const stockPriceData = (state = {}, action) => {
 };
 
 function stocks(
-    state = { 
-        isFetching: false, 
-        currentPrice: [], 
-        chartData: {series: [], labels: []} 
+    state = {
+        isFetching: false,
+        currentPrice: [],
+        chartData: { series: [], labels: [] }
     },
     action
 ) {
@@ -22,19 +27,14 @@ function stocks(
         case 'REQUEST_STOCK_PRICE_DATA':
             return Object.assign({}, state, {
                 isFetching: true,
-                // currentPrice: [], //temporary fix
-                // chartData: [],
             })
-        case 'RECEIVE_STOCK_PRICE_DATA': 
-        console.log("RECEIVE_STOCK_PRICE_DATA",action.currentPrice);
-        console.log(action.chartData.series);
-        console.log(action.chartData.labels);
-        return Object.assign({}, state, {
-            isFetching: false,
-            currentPrice: action.currentPrice,
-            chartData: action.chartData,
-        })
-        default: 
+        case 'RECEIVE_STOCK_PRICE_DATA':
+            return Object.assign({}, state, {
+                isFetching: false,
+                currentPrice: action.currentPrice,
+                chartData: action.chartData,
+            })
+        default:
             return state;
     }
 };

@@ -3,33 +3,35 @@ import { connect } from 'react-redux';
 import Watchlist from '../components/Watchlist';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const mapStateToProps = state => {    
+const mapStateToProps = state => {
     return {
-        //move this to reducer
+        //move this to reducer?
         watchlist: state.stocks.filter(
             (stock) => state.watchlist.includes(stock.id)
         ),
-        stockPriceData:state.stockPriceData,
+        stockPriceData: state.stockPriceData,        
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onStockViewDetails: (item, currentPrice, series) => {
-            console.log("sending props to details", series);
-            dispatch({ type: 'StockDetailsScreen', params: { item, currentPrice, series } })
+            dispatch({
+                type: 'StockDetailsScreen',
+                params: { item, currentPrice, series }
+            })
         }
     }
 };
 
-const WatchlistScreen = connect(    
+const WatchlistScreen = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Watchlist);
 
 export default WatchlistScreen;
 
-WatchlistScreen.navigationOptions = ({navigation}) => {
+WatchlistScreen.navigationOptions = ({ navigation }) => {
     return ({
         title: 'Watchlist',
         headerLeft: (

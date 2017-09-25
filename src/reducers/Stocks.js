@@ -74,4 +74,10 @@ const allStocks = [
         ticker: "BAC",
         logo: "https://facebook.github.io/react/img/logo_og.png",
     },
+    {
+        id: 12,
+        name: "Infosys Ltd.",
+        ticker: "INFY",
+        logo: "https://facebook.github.io/react/img/logo_og.png",
+    },
 ];

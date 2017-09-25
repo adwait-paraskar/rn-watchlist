@@ -1,6 +1,7 @@
 /*    
     watchlist: [stockId],
     priceDataByStock: {
+        isRefreshing: true/false,
         id: {
             isFetching: true,
             didInvalidate: false,
