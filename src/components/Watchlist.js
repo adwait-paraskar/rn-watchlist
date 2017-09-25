@@ -47,13 +47,13 @@ export default class Watchlist extends PureComponent {
 
         return (
             <StockPriceSummary
-                onPress={() => this.props.onStockViewDetails(item, currentPrice, chartData)}
+                onPress={ 
+                    () => this.props.onStockViewDetails(item, currentPrice, chartData)
+                }
                 item={item}
-                dispatch={this.props.navigation.dispatch}
                 isFetching={priceData.isFetching}
                 currentPrice={currentPrice}
             />
-            //TODO: find if there is better way of sending dispatch than above 
         )
     }
 
