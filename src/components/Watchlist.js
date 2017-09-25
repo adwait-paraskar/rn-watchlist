@@ -4,6 +4,11 @@ import { fechStockData } from '../actions';
 import StockPriceSummary from './StockPriceSummary';
 
 export default class Watchlist extends PureComponent {
+    constructor(props) {
+        super(props);
+        this._setInitialState();
+    }
+
     componentDidMount() {
         this._fetchData();
     };
@@ -15,11 +20,17 @@ export default class Watchlist extends PureComponent {
                 renderItem={this._renderItem}
                 keyExtractor={this._keyExtractor}
                 ItemSeparatorComponent={this._renderSeparator}
-                onRefresh={this._handleRefresh}
- //               refreshing={this.props.refreshing || false}
+                onRefresh={this._fetchData}
+                refreshing={this.state.refreshing || false}
             />
         );
     };
+
+    _setInitialState() {
+        this.state = {
+            refreshing: false,
+        };
+    }
 
     _keyExtractor = (item, index) => item.id;
 
@@ -46,15 +57,11 @@ export default class Watchlist extends PureComponent {
         )
     }
 
-    _fetchData() {
-        this.props.refreshing=true;
+    _fetchData = () => {
+        this.setState({refreshing: true});
         this.props.watchlist.forEach((item) => {
             this.props.navigation.dispatch(fechStockData(item.id, item.ticker));
         });
-        this.props.refreshing=false;
+        this.setState({refreshing: false});
     }
-
-    // _handleRefresh() {
-    //     this._fetchData();
-    // }
 };
