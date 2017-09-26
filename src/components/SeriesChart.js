@@ -28,7 +28,7 @@ class SeriesChart extends Component {
                 <View style={styles.chartContainer}>
                     <VictoryChart
                         domain={{ x: [0, 9], }}
-                        domainPadding={{ y: 10 }}
+                        domainPadding={{ x:1, y: 10 }}
                     >
                         <VictoryGroup
                             height={300}
@@ -42,7 +42,7 @@ class SeriesChart extends Component {
                                     },
                                     labels: { fontSize: 12 }
                                 }}
-                                animate={{ duration: 1500 }}
+                                animate={{ duration: 1500, delay: 300 }}
                                 categories={{ x: this.props.labels }}
                             />
                         </VictoryGroup>
