@@ -1,8 +1,15 @@
+/*
+    A simple higher order component for biding back to hardware press
+    TODO: for specific back actions, can provide 
+    callback functions to components thru props
+*/
+
 import React, { Component } from 'react';
 import { BackHandler } from 'react-native';
 
-function withHardwareBack(WrappedComponent) {
-    return class extends React.Component{
+function withHardwareBack(WrappedComponent, navigationOptions) {
+
+    class Wrapper extends Component {
         componentDidMount() {
             BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonPress);
         }
@@ -12,12 +19,20 @@ function withHardwareBack(WrappedComponent) {
         }
 
         handleBackButtonPress = () => {
-            const { goBack } = this.props.navigation;
-            goBack();
+            this.props.navigation.goBack();
+            return true;
         }
 
-        render(){
-            return <WrappedComponent {...this.props} />;
+        render() {
+            return (
+                <WrappedComponent {...this.props} />
+            )
         }
     }
+
+    Wrapper.navigationOptions = navigationOptions;
+
+    return Wrapper;
 }
+
+export default withHardwareBack;
