@@ -64,7 +64,6 @@ export default class StockSelector extends PureComponent {
     );
 
     _onPress = (item, selected) => {
-        console.log("pressed", item);
         this.props.onStockClick(item.id);
     }
 

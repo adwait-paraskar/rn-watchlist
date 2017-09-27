@@ -45,7 +45,6 @@ export function fechStockData(stockId, ticker) {
             error => console.log('An error occured.', error)
             )
             .then((responseJson) => {     
-                console.log("responseJson", responseJson);
                 dispatch(receivePriceData(stockId,responseJson));
             })
     }

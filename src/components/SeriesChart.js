@@ -28,7 +28,7 @@ class SeriesChart extends Component {
                 <View style={styles.chartContainer}>
                     <VictoryChart
                         domain={{ x: [0, 9], }}
-                        domainPadding={{ x:1, y: 10 }}
+                        domainPadding={{ x:1, y: 20 }}
                     >
                         <VictoryGroup
                             height={300}
@@ -53,7 +53,6 @@ class SeriesChart extends Component {
     };
 
     render() {
-        console.log("-----over to chart" + new Date().toLocaleString('en-US'));
         ///TODO: stack with last close shown in a line
         return (
             <View style={styles.container}>

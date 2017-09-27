@@ -23,7 +23,6 @@ class StockPriceSummary extends Component {
         if (!currentPrice) {
             return (<View />);
         }
-        console.log("current Price", currentPrice);
 
         let updated = currentPrice.updated || '-';
         return (

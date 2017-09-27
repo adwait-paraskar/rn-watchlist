@@ -24,14 +24,14 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-const WatchlistScreen = connect(
+const WatchlistScreen  = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Watchlist);
 
 export default WatchlistScreen;
 
-WatchlistScreen.navigationOptions = ({ navigation }) => {
+WatchlistScreen.navigationOptions = ({ navigation }) => { 
     return ({
         title: 'Watchlist',
         headerLeft: (
