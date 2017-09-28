@@ -79,8 +79,9 @@ class StockDetails extends Component {
     }
 
     _renderSeparator() {
-        return
-        <View style={{ height: 1, backgroundColor: "#CED0CE", }} />;
+        return (
+            <View style={{ height: 1, backgroundColor: "#CED0CE", }} />
+        )        
     }
 
     _renderChart() {
