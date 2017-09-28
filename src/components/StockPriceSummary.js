@@ -48,7 +48,9 @@ class StockPriceSummary extends Component {
     };
 
     _renderPrice() {
-        let { currentPrice, isFetching, } = this.props;
+        let { currentPrice, isFetching, error } = this.props;
+        if(error)
+            return (<Text style={[styles.h3, styles.decline]}>Error occured. Please retry.</Text>);
         if (isFetching)
             return (<ActivityIndicator />);
 

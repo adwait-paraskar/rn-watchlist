@@ -3,6 +3,7 @@ const stockPriceData = (state = { isRefreshing: false }, action) => {
         case 'REQUEST_STOCK_PRICE_DATA':
             let isRefreshing = true;
         case 'RECEIVE_STOCK_PRICE_DATA':
+        case 'RECEIVE_STOCK_PRICE_DATA_FAILURE':
             isRefreshing = false;
             return Object.assign({}, state, {
                 isRefreshing,
@@ -16,6 +17,7 @@ const stockPriceData = (state = { isRefreshing: false }, action) => {
 function stocks(
     state = {
         isFetching: false,
+        error: false,
         currentPrice: [],
         chartData: { series: [], labels: [] }
     },
@@ -25,12 +27,19 @@ function stocks(
         case 'REQUEST_STOCK_PRICE_DATA':
             return Object.assign({}, state, {
                 isFetching: true,
+                error: false,
             })
         case 'RECEIVE_STOCK_PRICE_DATA':
             return Object.assign({}, state, {
                 isFetching: false,
+                error: false,
                 currentPrice: action.currentPrice,
                 chartData: action.chartData,
+            })
+        case 'RECEIVE_STOCK_PRICE_DATA_FAILURE':
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: true,
             })
         default:
             return state;

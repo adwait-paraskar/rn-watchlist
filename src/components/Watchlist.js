@@ -42,6 +42,7 @@ export default class Watchlist extends PureComponent {
                 }
                 item={item}
                 isFetching={priceData.isFetching}
+                error={priceData.error}
                 currentPrice={currentPrice}
             />
         )
