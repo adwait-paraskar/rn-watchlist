@@ -5,14 +5,14 @@ export function getCurrentPrice(json) {
     let lastTradedPrice = Object.values(dailySeries)[0];
 
     let price = lastTradedPrice["4. close"];
-    let openPrice = lastTradedPrice['1. open'];
+    let open = lastTradedPrice['1. open'];
     let low= lastTradedPrice['3. low'];
     let high= lastTradedPrice['2. high'];
     let volume= lastTradedPrice['5. volume'];
-    let change = (price - openPrice).toFixed(2);
-    let changePcnt = (change * 100 / openPrice).toFixed(2);
+    let change = (price - open).toFixed(2);
+    let changePcnt = (change * 100 / open).toFixed(2);
 
-    return { price, openPrice, change, changePcnt, updated, high, low, volume };
+    return { price, open, change, changePcnt, updated, high, low, volume };
 };
 
 const NO_OF_PAST_DAYS_FOR_CHART = 10;

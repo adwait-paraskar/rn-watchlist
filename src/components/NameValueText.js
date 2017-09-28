@@ -7,7 +7,7 @@ class NameValueText extends Component {
         return (
             <View style={styles.container}>
                 <Text style={{ fontSize: 14, textAlign: 'left' }}>
-                    {`${name}:`}
+                    {`${name}: `}
                 </Text>
                 <Text style={{ fontSize: 14, fontWeight: 'bold' }}>
                     {value}
@@ -21,7 +21,6 @@ export default NameValueText;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        justifyContent: 'space-around',    
-        padding: 2,
+        justifyContent: 'flex-start',
     },
 });

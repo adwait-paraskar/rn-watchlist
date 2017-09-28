@@ -11,7 +11,6 @@ const mapStateToProps = state => {
         : {item:{}, currentPrice:{}, series:{}};
     //this will be empty during "back" navigation 
     //TODO: can it be moved to reducer?
-    console.log("props in SDS", props);
     return {
         item: props.item,
         currentPrice: props.currentPrice,
