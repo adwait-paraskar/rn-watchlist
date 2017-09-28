@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     View,
     FlatList,
@@ -7,10 +7,17 @@ import {
 import Stock from './Stock';
 import SearchBar from './SearchBar';
 
-export default class StockSelector extends PureComponent {
+export default class StockSelector extends Component {
     constructor(props) {
         super(props);
         this._setInitialState();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.watchlist.length !== nextProps.watchlist.length) {
+            const { setParams } = this.props.navigation;
+            setParams({ count: nextProps.watchlist.length || 0 });
+        }
     }
 
     render() {
@@ -41,7 +48,7 @@ export default class StockSelector extends PureComponent {
         )
     };
 
-    _filterData = ( text ) => {        
+    _filterData = (text) => {
         if (text === '')
             this._setInitialState();
 

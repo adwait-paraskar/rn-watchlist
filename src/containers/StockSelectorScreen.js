@@ -28,10 +28,14 @@ const StockSelectorScreen = connect(
 
 export default StockSelectorScreen;
 
-StockSelectorScreen.navigationOptions = ({ navigation }) => {    
+StockSelectorScreen.navigationOptions = ({ navigation }) => {
+    let title = 'Add to Watchlist ';
+    let { params } = navigation.state;
+    title += (params) ? `(${params.count || 0})` : '(0)';
+
     return ({
-        headerTitle: 'Add to Watchlist',        
-        headerTitleStyle: {color: 'white', textAlign: 'center'},        
+        headerTitle: title,
+        headerTitleStyle: { color: 'white', textAlign: 'center' },
         headerLeft: null,
         headerRight: (
             <Icon.Button

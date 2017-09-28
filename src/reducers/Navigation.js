@@ -7,14 +7,19 @@ const nav = (state = initialNavState, action) => {
     switch (action.type) {
         case 'WatchlistScreen':
             nextState = AppNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'WatchlistScreen' }),
+                NavigationActions.navigate({
+                    routeName: 'WatchlistScreen',
+                    params: action.params
+                }),
                 state
-            );            
+            );
             break;
         case 'StockDetailsScreen':
             nextState = AppNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'StockDetailsScreen', 
-                params: action.params }),
+                NavigationActions.navigate({
+                    routeName: 'StockDetailsScreen',
+                    params: action.params
+                }),
                 state
             );
             break;
