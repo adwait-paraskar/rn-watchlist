@@ -1,64 +1,80 @@
 import React, { Component } from 'react';
-import { 
-    Text, 
-    View, 
-    StyleSheet, 
-    ScrollView 
+import { NO_OF_PAST_DAYS_INDEX } from '../actions/constants';
+import {
+    Text,
+    View,
+    StyleSheet,
+    ScrollView
 } from 'react-native';
-import { 
-    VictoryChart, 
-    VictoryGroup, 
-    VictoryLine 
+import {
+    VictoryChart,
+    VictoryGroup,
+    VictoryLine,
+    VictoryTheme,
 } from 'victory-native';
 
 class SeriesChart extends Component {
-    _showHeader() {
+    render() {
+        let data = this.props.series;
+        let open = this.props.open;
         return (
-            <Text style={styles.header}>
-                Daily Series
-            </Text>
+            <View style={styles.container}>
+                <View>{this._showHeader()}</View>                
+                <View>{data && this._renderChart(data,open)}</View>
+            </View>
         );
     };
 
-    _renderChart() {
-        let data = this.props.series;
+    _showHeader() {
+        return (
+            <Text style={styles.header}>Daily Series</Text>
+        );
+    };
+
+    _renderChart(data, open) {    
+        let openData = [
+            {x:0, y:parseFloat(open)},
+            {x:NO_OF_PAST_DAYS_INDEX, y:parseFloat(open)},
+        ];
+
         //TODO:domain should come from config or user selection
         return (
             <ScrollView>
                 <View style={styles.chartContainer}>
                     <VictoryChart
                         domain={{ x: [0, 9], }}
-                        domainPadding={{ x:1, y: 20 }}
+                        domainPadding={{ x: 1, y: 20 }}
+                        theme={VictoryTheme.material}
                     >
-                        <VictoryGroup
-                            height={300}
-                            data={data} >
+                        <VictoryGroup>
                             <VictoryLine
-                                interpolation="cardinal"
+                                data={data}
+                                interpolation='cardinal'
                                 style={{
                                     data: {
-                                        stroke: "cornflowerblue",
+                                        stroke: 'cornflowerblue',
                                         strokeWidth: 3
                                     },
-                                    labels: { fontSize: 12 }
                                 }}
-                                animate={{ duration: 1500, delay: 300 }}
+                                animate={{ duration: 1500, delay: 500 }}
                                 categories={{ x: this.props.labels }}
                             />
+
+                            <VictoryLine
+                            data={openData}
+                            style={{
+                                data: {
+                                    stroke: 'green',
+                                    strokeWidth: 3,
+                                },
+                            }}
+                            categories={{ x: this.props.labels }}
+                        />
+
                         </VictoryGroup>
                     </VictoryChart>
                 </View>
             </ScrollView>
-        );
-    };
-
-    render() {
-        ///TODO: stack with last close shown in a line
-        return (
-            <View style={styles.container}>
-                <View>{this._showHeader()}</View>
-                <View>{this._renderChart()}</View>
-            </View>
         );
     };
 }
@@ -79,8 +95,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingTop: 20,
         textAlign: 'center',
-    },
-    error: {
-        color: 'red',
     },
 });

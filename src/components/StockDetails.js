@@ -6,6 +6,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class StockDetails extends Component {
     render() {
+        if(!this.props.currentPrice){
+            return(<View />);
+        }
         return (
             <View style={styles.container}>
                 {this._renderHeader()}
@@ -92,6 +95,7 @@ class StockDetails extends Component {
                         item={this.props.item}
                         series={this.props.series.series}
                         labels={this.props.series.labels}
+                        open={this.props.currentPrice.open}
                     />
                 </View>
             )
