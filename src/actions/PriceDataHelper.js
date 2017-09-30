@@ -1,3 +1,5 @@
+import { NO_OF_PAST_DAYS_INDEX } from './constants';
+
 export function getCurrentPrice(json) {
     let updated = json["Meta Data"]["3. Last Refreshed"];
 
@@ -15,11 +17,10 @@ export function getCurrentPrice(json) {
     return { price, open, change, changePcnt, updated, high, low, volume };
 };
 
-const NO_OF_PAST_DAYS_FOR_CHART = 10;
 export function getChartData(json) {
     let chartData = { series: [], labels: [] };
     let dailySeries = json["Time Series (Daily)"];
-    let x = NO_OF_PAST_DAYS_FOR_CHART-1;
+    let x = NO_OF_PAST_DAYS_INDEX;
     let series, labels = [];
     Object.keys(dailySeries)
         .slice(0, x).
