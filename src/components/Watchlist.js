@@ -7,7 +7,7 @@ export default class Watchlist extends PureComponent {
 
     componentDidMount() {
         this._fetchData();
-    };
+    }
 
     render() {
         return (
@@ -20,13 +20,13 @@ export default class Watchlist extends PureComponent {
                 refreshing={this.props.stockPriceData.isRefreshing}
             />
         );
-    };
+    }
 
     _keyExtractor = (item, index) => item.id;
 
     _renderSeparator = () => {
         return (
-            <View style={{ height: 1, backgroundColor: "#CED0CE", }} />
+            <View style={{ height: 1, backgroundColor: '#CED0CE', }} />
         );
     };
 
@@ -37,7 +37,7 @@ export default class Watchlist extends PureComponent {
 
         return (
             <StockPriceSummary
-                onPress={ 
+                onPress={
                     () => this.props.onStockViewDetails(item, currentPrice, chartData)
                 }
                 item={item}
@@ -45,7 +45,7 @@ export default class Watchlist extends PureComponent {
                 error={priceData.error}
                 currentPrice={currentPrice}
             />
-        )
+        );
     }
 
     _fetchData = () => {
@@ -53,4 +53,4 @@ export default class Watchlist extends PureComponent {
             this.props.navigation.dispatch(fechStockData(item.id, item.ticker));
         });
     }
-};
+}

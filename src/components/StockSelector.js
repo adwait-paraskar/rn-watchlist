@@ -32,7 +32,7 @@ export default class StockSelector extends Component {
                 extraData={this.props.watchlist}
             />
         );
-    };
+    }
 
     _keyExtractor = (item, index) => item.id;
 
@@ -45,12 +45,11 @@ export default class StockSelector extends Component {
     _renderHeader = () => {
         return (
             <SearchBar onChangeText={this._filterData} />
-        )
+        );
     };
 
     _filterData = (text) => {
-        if (text === '')
-            this._setInitialState();
+        if (text === '') {this._setInitialState();}
 
         let filteredStocklist = this.props.stocks.filter(
             (item) => {
@@ -59,7 +58,7 @@ export default class StockSelector extends Component {
             });
         this.setState({
             stockList: filteredStocklist,
-        })
+        });
     }
 
     _renderItem = ({ item }) => (
@@ -79,4 +78,4 @@ export default class StockSelector extends Component {
             stockList: this.props.stocks,
         };
     }
-};  
+}

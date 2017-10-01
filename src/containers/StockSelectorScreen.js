@@ -1,30 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleStock } from '../actions';
-import { View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import StockSelector from '../components/StockSelector'
+import StockSelector from '../components/StockSelector';
 
 const mapStateToProps = state => {
     return {
         stocks: state.stocks,
         watchlist: state.watchlist,
-    }
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onStockClick: id => {
-            dispatch(toggleStock(id))
+            dispatch(toggleStock(id));
         }
-    }
+    };
 };
 
 const StockSelectorScreen = connect(
     mapStateToProps,
     mapDispatchToProps
-)(StockSelector)
+)(StockSelector);
 
 export default StockSelectorScreen;
 

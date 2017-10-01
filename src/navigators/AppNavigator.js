@@ -28,13 +28,17 @@ export const AppNavigator = StackNavigator(
 
 class AppWithNavigationState extends React.Component {
     componentDidMount() {
-        if (Platform.OS === 'android')
-            BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+        if (Platform.OS === 'android') {
+            BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+        }
     }
+
     componentWillUnmount() {
-        if (Platform.OS === 'android')
-            BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+        if (Platform.OS === 'android') {
+            BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+        }
     }
+
     onBackPress = () => {
         const { dispatch, nav } = this.props;
         if (nav.index === 0) {
@@ -59,4 +63,4 @@ const mapStateToProps = state => ({
     nav: state.nav,
 });
 
-export default connect(mapStateToProps)(AppWithNavigationState);  
+export default connect(mapStateToProps)(AppWithNavigationState);
