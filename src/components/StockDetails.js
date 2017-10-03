@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class StockDetails extends Component {
     render() {
-        if(!this.props.currentPrice){
-            return(<View />);
+        if (!this.props.currentPrice){
+            return (<View />);
         }
         return (
             <View style={styles.container}>
@@ -41,11 +41,11 @@ class StockDetails extends Component {
         return (
             <View style={styles.basicsContainer}>
                 <Text style={[styles.h1]}>{price}</Text>
-                <Icon name={changeIcon} size={25} color='gray' />
+                <Icon name={changeIcon} size={25} color="gray" />
                 <Text style={[...cellStyles]}> {change} </Text>
                 <Text style={[...cellStyles]}> {`(${changePcnt}%)`} </Text>
             </View>
-        )
+        );
     }
 
     _renderBasics() {
@@ -67,7 +67,7 @@ class StockDetails extends Component {
                     <NameValueText name={'Volume'} value={volume} />
                 </View>
             </View>
-        )
+        );
     }
 
     _renderUpdated() {
@@ -75,16 +75,16 @@ class StockDetails extends Component {
         return (
             <View style={styles.basicsContainer}>
                 <Text style={styles.h3}>NASDAQ </Text>
-                <Icon name='access-time' size={10} color='gray' />
+                <Icon name="access-time" size={10} color="gray" />
                 <Text style={styles.h3}> {updated}  </Text>
             </View>
-        )
+        );
     }
 
     _renderSeparator() {
         return (
-            <View style={{ height: 1, backgroundColor: "#CED0CE", }} />
-        )        
+            <View style={{ height: 1, backgroundColor: '#CED0CE', }} />
+        );
     }
 
     _renderChart() {
@@ -98,7 +98,7 @@ class StockDetails extends Component {
                         open={this.props.currentPrice.open}
                     />
                 </View>
-            )
+            );
         }
         return {};
     }

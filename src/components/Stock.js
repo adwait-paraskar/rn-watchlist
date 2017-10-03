@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-    StyleSheet, 
-    View, 
-    TouchableOpacity, 
-    Text, 
-    Image 
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    Text,
+    Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -45,16 +45,16 @@ export default Stock;
 const styles = StyleSheet.create({
     stockContainer: {
         flex: 1,
-        flexDirection: 'row',        
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 5,
     },
-    basicsContainer: {                
+    basicsContainer: {
         flex: 5,
         padding: 10,
     },
-    iconContainer: {                
+    iconContainer: {
         flex: 1,
         alignItems: 'center',
     },
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         height: 40
     },
     h1: {
-        fontSize: 22,        
+        fontSize: 22,
     },
     h3: {
         fontSize: 12,

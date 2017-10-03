@@ -19,19 +19,19 @@ class SeriesChart extends Component {
         let open = this.props.open;
         return (
             <View style={styles.container}>
-                <View>{this._showHeader()}</View>                
+                <View>{this._showHeader()}</View>
                 <View>{data && this._renderChart(data,open)}</View>
             </View>
         );
-    };
+    }
 
     _showHeader() {
         return (
             <Text style={styles.header}>Daily Series</Text>
         );
-    };
+    }
 
-    _renderChart(data, open) {    
+    _renderChart(data, open) {
         let openData = [
             {x:0, y:parseFloat(open)},
             {x:NO_OF_PAST_DAYS_INDEX, y:parseFloat(open)},
@@ -49,7 +49,7 @@ class SeriesChart extends Component {
                         <VictoryGroup>
                             <VictoryLine
                                 data={data}
-                                interpolation='cardinal'
+                                interpolation="cardinal"
                                 style={{
                                     data: {
                                         stroke: 'cornflowerblue',
@@ -76,7 +76,7 @@ class SeriesChart extends Component {
                 </View>
             </ScrollView>
         );
-    };
+    }
 }
 export default SeriesChart;
 

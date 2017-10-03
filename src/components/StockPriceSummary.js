@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { 
-    StyleSheet, 
-    View, 
-    TouchableOpacity, 
-    Text, 
-    ActivityIndicator 
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    Text,
+    ActivityIndicator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -18,7 +18,7 @@ class StockPriceSummary extends Component {
     // error handling 
     render() {
         //TODO: put up separate methods for rendering fetching view and with data view
-        let { logo, name, ticker } = this.props.item;
+        let { name, ticker } = this.props.item;
         let { onPress, currentPrice } = this.props;
         if (!currentPrice) {
             return (<View />);
@@ -45,20 +45,20 @@ class StockPriceSummary extends Component {
                 </View>
             </TouchableOpacity>
         );
-    };
+    }
 
     _renderPrice() {
         let { currentPrice, isFetching, error } = this.props;
-        if(error)
-            return (<Text style={[styles.h3, styles.decline]}>Error occured. Please retry.</Text>);
+        if (error)
+            {return (<Text style={[styles.h3, styles.decline]}>Error occured. Please retry.</Text>);}
         if (isFetching)
-            return (<ActivityIndicator />);
+            {return (<ActivityIndicator />);}
 
         let cellStyles = [styles.h3, styles.price];
         if (currentPrice.change > 0)
-            cellStyles.push(styles.advance);
+            {cellStyles.push(styles.advance);}
         if (currentPrice.change < 0)
-            cellStyles.push(styles.decline);
+            {cellStyles.push(styles.decline);}
         return (
             <View>
                 <Text style={[styles.h1, styles.price]}>{currentPrice.price}</Text>
@@ -66,9 +66,9 @@ class StockPriceSummary extends Component {
                     {`${currentPrice.change} (${currentPrice.changePcnt})`}
                 </Text>
             </View>
-        )
+        );
     }
-};
+}
 
 export default StockPriceSummary;
 

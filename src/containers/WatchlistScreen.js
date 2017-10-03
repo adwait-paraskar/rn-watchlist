@@ -9,7 +9,7 @@ const mapStateToProps = state => {
         watchlist: state.stocks.filter(
             (stock) => state.watchlist.includes(stock.id)
         ),
-        stockPriceData: state.stockPriceData,        
+        stockPriceData: state.stockPriceData,
     };
 };
 
@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: 'StockDetailsScreen',
                 params: { item, currentPrice, series }
-            })
+            });
         }
-    }
+    };
 };
 
 const WatchlistScreen  = connect(
@@ -31,7 +31,7 @@ const WatchlistScreen  = connect(
 
 export default WatchlistScreen;
 
-WatchlistScreen.navigationOptions = ({ navigation }) => { 
+WatchlistScreen.navigationOptions = ({ navigation }) => {
     return ({
         title: 'Watchlist',
         headerLeft: (

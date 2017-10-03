@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import StockDetails from '../components/StockDetails';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const mapStateToProps = state => {    
+const mapStateToProps = state => {
     let selectedRoute = state.nav.routes[state.nav.index];
     let props = (selectedRoute.params) ?
         selectedRoute.params
@@ -15,17 +14,17 @@ const mapStateToProps = state => {
         item: props.item,
         currentPrice: props.currentPrice,
         series: props.series,
-    }
+    };
 };
 
-StockDetailsScreen = connect(
+const StockDetailsScreen = connect(
     mapStateToProps
 )(StockDetails);
 
 export default StockDetailsScreen;
 
-StockDetailsScreen.navigationOptions = ({ navigation }) => {    
-    let stockName= navigation.state.params.item.name || 'Stock Details';
+StockDetailsScreen.navigationOptions = ({ navigation }) => {
+    let stockName = navigation.state.params.item.name || 'Stock Details';
     return ({
         title: stockName,
         headerLeft: (
