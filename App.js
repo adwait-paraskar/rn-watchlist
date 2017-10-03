@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import AppWithNavigationState from './src/navigators/AppNavigator';
 import MyWatchlistApp from './src/reducers';
 
-export default class App extends Component {
+export default class App extends React.Component {
   store = createStore(
     MyWatchlistApp,
     applyMiddleware(
