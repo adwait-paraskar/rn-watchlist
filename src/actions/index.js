@@ -1,4 +1,5 @@
 import { getCurrentPrice, getChartData } from './PriceDataHelper';
+import { getTimeSeriesFetchUrl } from '../api';
 
 export const toggleStock = id => {
   return {
@@ -39,14 +40,11 @@ export const receivePriceData = (id, json) => {
   }
 };
 
-const REQUEST_URL =
-    'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=STUC6J6GO0NRGUH2&symbol=';
-
 export function fechStockData (stockId, ticker) {
+
   return (dispatch, getState) => {
     dispatch(requestPriceData(stockId));
-
-    let apiUrl = REQUEST_URL + ticker;
+    let apiUrl = getTimeSeriesFetchUrl('TIME_SERIES_DAILY', ticker);
     return fetch(apiUrl)
       .then(
         (response) => response.json(),
