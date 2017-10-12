@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 class StockDetails extends Component {
     render() {
         if (!this.props.currentPrice){
-            return (<View />);
+            return null;
         }
         return (
             <View style={styles.container}>
@@ -100,7 +100,7 @@ class StockDetails extends Component {
                 </View>
             );
         }
-        return {};
+        return null;
     }
 }
 export default StockDetails;
