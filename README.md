@@ -8,7 +8,13 @@ It uses following components:
 4. React Native Vector Icons 
 5. React Native FlatList
 
-Uses ESLint for linting and VS Code IDE for development.
+Tools: 
+1. ESLint for linting 
+2. VS Code IDE for development.
+
+The real time API from https://www.alphavantage.co/ is used to get live stock prices. 
+Please create your API key and replace it in the env.js.
+
 
 ## Android screenshots
 ![Add stocks to Watchlist](https://user-images.githubusercontent.com/31820690/31575022-6bfb0a7c-b0fa-11e7-9243-56d47180deb6.png)
