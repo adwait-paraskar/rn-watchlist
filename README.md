@@ -8,4 +8,11 @@ It uses following components:
 4. React Native Vector Icons 
 5. React Native FlatList
 
+## Android screenshots
+(docs/Android1.png "Add stocks to Watchlist")
+(docs/Android2.png) "Watchlist")
+(docs/Android3.png "Stock details") 
+(docs/Android4.png) "Another Watchlist")
+
+
 This project was bootstrapped with [Create React Native App] to allow new users to get started off quickly. (https://github.com/react-community/create-react-native-app).
