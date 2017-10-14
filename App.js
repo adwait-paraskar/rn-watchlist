@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-
 import AppWithNavigationState from './src/navigators/AppNavigator';
-import MyWatchlistApp from './src/reducers';
+import configureStore from './src/configureStore';
 
-export default class App extends Component {
-  store = createStore(
-    MyWatchlistApp,
-    applyMiddleware(
-      thunkMiddleware
-    ));
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true,
+      store: configureStore(() => this.setState({ isLoading: false })),
+    };
+  }
 
   render() {
+    if (this.state.isLoading) {
+      return null;
+    }
+    const { store } = this.state;
     return (
-      <Provider store={this.store}>
+      <Provider store={store}>
         <AppWithNavigationState />
       </Provider>
     );
