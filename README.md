@@ -13,7 +13,7 @@ Tools:
 2. VS Code IDE for development.
 
 The real time API from https://www.alphavantage.co/ is used to get live stock prices. 
-Please create your API key and replace it in the env.js.
+Please create your API key and replace it in the env.js, to avoid getting API error. 
 
 
 ## Android screenshots
@@ -22,8 +22,9 @@ Please create your API key and replace it in the env.js.
 ![Stock details](https://user-images.githubusercontent.com/31820690/31575024-6c4e9e30-b0fa-11e7-8dcc-c4bb0d9ee81e.png)
 ![Another Watchlist](https://user-images.githubusercontent.com/31820690/31575021-6bcf3dc0-b0fa-11e7-9cec-91f358979971.png)
 
-## iPad screen recording
+## iPhone screen recording
 ![iPhone recording](https://user-images.githubusercontent.com/31820690/32365179-dcedd990-c09e-11e7-8ed8-fb6bb0279bce.gif)
+## iPad screen recording
 ![iPad recording](https://user-images.githubusercontent.com/31820690/31575016-568ff80a-b0fa-11e7-8cc9-c453313e2eda.gif)
 
 
