@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import SeriesChart from './SeriesChart';
 import NameValueText from './NameValueText';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import StockPriceChange from './StockPriceChange';
 
 class StockDetails extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -29,14 +30,11 @@ class StockDetails extends Component {
 
   _renderHeader() {
     let { price, change, changePcnt } = this.props.currentPrice;
-    let cellStyles = [styles.h2, styles.price];
     let changeIcon = 'code';
     if (change > 0) {
-      cellStyles.push(styles.advance);
       changeIcon = 'arrow-upward';
     }
     if (change < 0) {
-      cellStyles.push(styles.decline);
       changeIcon = 'arrow-downward';
     }
 
@@ -44,8 +42,10 @@ class StockDetails extends Component {
       <View style={styles.basicsContainer}>
         <Text style={[styles.h1]}>{price}</Text>
         <Icon name={changeIcon} size={25} color="gray" />
-        <Text style={[...cellStyles]}> {change} </Text>
-        <Text style={[...cellStyles]}> {`(${changePcnt}%)`} </Text>
+        <StockPriceChange
+          change={{ value: change, pcnt: changePcnt }}
+          cellStyles={[styles.h2, styles.price]}
+        />
       </View>
     );
   }
@@ -132,10 +132,4 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontWeight: 'bold'
   },
-  advance: {
-    color: 'green'
-  },
-  decline: {
-    color: 'red'
-  }
 });
