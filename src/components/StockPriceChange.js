@@ -2,14 +2,17 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 const StockPriceChange = ({ change, cellStyles }) => {
+  let changeStyle = styles.unchanged;
   if (change.value > 0) {
-    cellStyles.push(styles.advance);
+    changeStyle = styles.advance;
   }
   if (change.value < 0) {
-    cellStyles.push(styles.decline);
+    changeStyle = styles.decline;
   }
   return (
-    <Text style={[...cellStyles]}>{`${change.value} (${change.pcnt}%)`}</Text>
+    <Text style={[...cellStyles, changeStyle]}>
+      {`${change.value} (${change.pcnt}%)`}
+    </Text>
   );
 };
 
@@ -21,5 +24,8 @@ const styles = StyleSheet.create({
   },
   decline: {
     color: 'red'
+  },
+  unchanged: {
+    color: 'black'
   }
 });
